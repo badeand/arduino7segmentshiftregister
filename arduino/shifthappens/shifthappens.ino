@@ -23,81 +23,39 @@ void setup()
   pinMode(DS_pin, OUTPUT);
   pinMode(STCP_pin, OUTPUT);
   pinMode(SHCP_pin, OUTPUT);
-
   pinMode(pot1, INPUT);
-
-  Serial.begin(9600);
-  
   writereg(blank, blank);
-
-  
 }
-
-// byte registers[8];
 
 
 void writereg(byte r1[], byte r2[])
 {
   digitalWrite(STCP_pin, LOW);
-  wait();
   for (int i = 7; i >= 0; i--)
   {
     digitalWrite(SHCP_pin, LOW);
-    wait();
     digitalWrite(DS_pin, r1[i] );
-    wait();
     digitalWrite(SHCP_pin, HIGH);
-    wait();
   }
-  wait();
-
-
-
   for (int i = 7; i >= 0; i--)
   {
     digitalWrite(SHCP_pin, LOW);
-    wait();
     digitalWrite(DS_pin, r2[i] );
-    wait();
     digitalWrite(SHCP_pin, HIGH);
-    wait();
   }
   digitalWrite(STCP_pin, HIGH);
-  wait();
 }
 
 void loop()
 {
-
-
-    int a = analogRead(5) / 10; // max value: 98
-
-  int n1 = a / 10;
+  for ( int a = 0 ; a < 100 ; a++) {
+    int n1 = a / 10;
     int n2 = a % 10;
     writereg(numbers[n1], numbers[n2]);
     delay(200);
-  
-/*
-    Serial.print("a = " );
-    Serial.print(a );
-    Serial.print(" n1 = " );
-    Serial.print(n1 );
-    Serial.print(" n2 = " );
-    Serial.print(n2 );
-    Serial.println(" . ");
-*/
-
-
-
-
+  }
 }
 
 
 
-
-
-void wait()
-{
-  delay(00);
-}
 
