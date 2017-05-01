@@ -1,10 +1,7 @@
 int DS_pin = 8;     // serial data input
 int STCP_pin = 9;   // latch
 int SHCP_pin = 10;  // clock
-
-int a = 0;
-int b = 0;
-
+int pot1 = 5;
 
 byte blank[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -26,7 +23,14 @@ void setup()
   pinMode(DS_pin, OUTPUT);
   pinMode(STCP_pin, OUTPUT);
   pinMode(SHCP_pin, OUTPUT);
+
+  pinMode(pot1, INPUT);
+
+  Serial.begin(9600);
+  
   writereg(blank, blank);
+
+  
 }
 
 // byte registers[8];
@@ -65,18 +69,32 @@ void writereg(byte r1[], byte r2[])
 void loop()
 {
 
- 
 
-  for ( int a = 0 ; a < 10 ; a++ ) {
-    for ( int b = 0 ; b < 10 ; b++ ) {
+    int a = analogRead(5) / 10; // max value: 98
 
-      writereg(numbers[a], numbers[b]);
-      delay(200);
+  int n1 = a / 10;
+    int n2 = a % 10;
+    writereg(numbers[n1], numbers[n2]);
+    delay(200);
+  
+/*
+    Serial.print("a = " );
+    Serial.print(a );
+    Serial.print(" n1 = " );
+    Serial.print(n1 );
+    Serial.print(" n2 = " );
+    Serial.print(n2 );
+    Serial.println(" . ");
+*/
 
-    }
 
-  }
+
+
 }
+
+
+
+
 
 void wait()
 {
