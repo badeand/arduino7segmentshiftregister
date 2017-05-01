@@ -48,39 +48,10 @@ void loop()
 
 for( int i = 0 ; i < 10 ; i++ ) {
   writereg(numbers[i]);
-  delay(2000);
+  delay(500);
   }
 
-/*
-  writereg(numbers[1]);
-  delay(500);
-  writereg(numbers[2]);
-  delay(500);
-  writereg(numbers[3]);
-  delay(500);
-  writereg(numbers[4]);
-  delay(500);
-  writereg(numbers[5]);
-  delay(500);
-  writereg(numbers[6]);
-  delay(500);
-  writereg(numbers[7]);
-  delay(500);
-  /*
-    for (int i = 0; i < 8; i++) {
-    //blank();
-    registers[i] = HIGH;
-    delay(100);
-    writereg(registers);
-    }
-    for (int i = 7; i > 0; i--)
-    {
-    // blank();
-    registers[i] = LOW;
-    delay(100);
-    writereg(registers);
-    }
-  */
+
 
 }
 
